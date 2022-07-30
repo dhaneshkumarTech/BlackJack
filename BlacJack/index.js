@@ -11,6 +11,9 @@ let sumEl = document.querySelector("#sum-el")
 let cardEl = document.querySelector("#card-el")
 
 function startGame(){
+  if(sum != 0){
+    cards = []
+  }
   let firstCard = getRandomCard()
   let secondCard = getRandomCard()
   arrLength = cards.length
@@ -36,7 +39,7 @@ function startGame(){
     cardEl.textContent = "Cards: " 
     for(let i = 0; i<cards.length; i++)
     {
-      cardEl.textContent += cards[i] + " "
+      cardEl.textContent += cards[i] + "  "
     }
  }
  function drawCard(){
@@ -52,7 +55,7 @@ function startGame(){
     cardEl.textContent = "Cards: " 
     for(let i = 0; i<cards.length; i++)
     {
-      cardEl.textContent += cards[i] + " "
+      cardEl.textContent += cards[i] + "  "
     }
   }
  }
