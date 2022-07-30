@@ -17,14 +17,6 @@ p{
     font-size: 30px;
     margin-right: 200px;
 }
-#draw-cards{
-    color: red;
-}
-#zero-cards{
-    color: red;
-    font-weight: normal;
-
-}
 button{
     background-color: goldenrod;
     color: black;

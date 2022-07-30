@@ -1,30 +1,34 @@
-let firstCard = getRandomCard()
-let secondCard = getRandomCard()
-let cards = [firstCard, secondCard]
-let sum = firstCard + secondCard
-let arrLength = 2
+let cards = []
+let sum = 0
+let arrLength = 0
 let message = ""
+let hasBlackjack =false
+let isAlive = false
 
 let messageEl = document.getElementById("message-el")
 //let sumEl = document.getElementById("sum-el")
 let sumEl = document.querySelector("#sum-el")
 let cardEl = document.querySelector("#card-el")
-let drawEl = document.querySelector("#draw-cards")
-let zeroCards = document.querySelector("#zero-cards")
 
 function startGame(){
-  
-  drawEl.textContent = "Remaining Cards: " + 2
+  let firstCard = getRandomCard()
+  let secondCard = getRandomCard()
+  arrLength = cards.length
+  sum = firstCard + secondCard
+  cards.push(firstCard,secondCard)
   playGame()
 }
  function playGame(){
   if(sum <= 20){
+    isAlive = true
     message = "Do you want to draw another card?"
   }
   else if(sum === 21){
+    hasBlackjack = true
     message = "Hey! You got the BlackJack"
   }
   else{
+    isAlive = false
     message = "Better luck Next time. You lost!"
   }
     messageEl.textContent = message
@@ -36,14 +40,12 @@ function startGame(){
     }
  }
  function drawCard(){
-  if(arrLength> 0 && sum < 21)
+  if(hasBlackjack === false && isAlive)
   {
     let newCard = getRandomCard()
     sum +=newCard
     cards.push(newCard)
     playGame()
-    
-    arrLength -= 1
   }
   else {
     sumEl.textContent ="Sum: " + sum
@@ -53,15 +55,7 @@ function startGame(){
       cardEl.textContent += cards[i] + " "
     }
   }
-  //let remainingCards = 4 - arrLength
-  drawEl.textContent = "Remaining Cards: " + arrLength
-  if(arrLength == 0){
-  messageEl.textContent = "Better luck Next time. You lost!"
-  zeroCards.textContent = "You cannot draw more Card!"
-  }
  }
-
-
  function getRandomCard(){
   return Math.floor(Math.random() * 10) + 2
  }
