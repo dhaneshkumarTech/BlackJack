@@ -1,5 +1,5 @@
-let firstCard = Math.floor(Math.random() * 11) + 2
-let secondCard = Math.floor(Math.random() * 11) + 2
+let firstCard = getRandomCard()
+let secondCard = getRandomCard()
 let cards = [firstCard, secondCard]
 let sum = firstCard + secondCard
 let arrLength = 2
@@ -29,12 +29,16 @@ function startGame(){
   }
     messageEl.textContent = message
     sumEl.textContent ="Sum: " + sum
-    cardEl.textContent = "Cards: " + cards
+    cardEl.textContent = "Cards: " 
+    for(let i = 0; i<cards.length; i++)
+    {
+      cardEl.textContent += cards[i] + " "
+    }
  }
  function drawCard(){
-  if(arrLength>0)
+  if(arrLength> 0 && sum < 21)
   {
-    let newCard = Math.floor(Math.random() * 11) + 2
+    let newCard = getRandomCard()
     sum +=newCard
     cards.push(newCard)
     playGame()
@@ -43,7 +47,11 @@ function startGame(){
   }
   else {
     sumEl.textContent ="Sum: " + sum
-    cardEl.textContent = "Cards: " + cards
+    cardEl.textContent = "Cards: " 
+    for(let i = 0; i<cards.length; i++)
+    {
+      cardEl.textContent += cards[i] + " "
+    }
   }
   //let remainingCards = 4 - arrLength
   drawEl.textContent = "Remaining Cards: " + arrLength
@@ -51,4 +59,9 @@ function startGame(){
   messageEl.textContent = "Better luck Next time. You lost!"
   zeroCards.textContent = "You cannot draw more Card!"
   }
+ }
+
+
+ function getRandomCard(){
+  return Math.floor(Math.random() * 10) + 2
  }
